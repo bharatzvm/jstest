@@ -1,0 +1,6 @@
+{
+  "verbose": true,
+  "ignore": ["*/compiled/*", "webpack.config.babel.js"],
+  "ext": "js,jsx,json,scss",
+  "delay": "100"
+}

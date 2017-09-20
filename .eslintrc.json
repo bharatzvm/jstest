@@ -1,0 +1,26 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "max-len": 0,
+    "no-console": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^(res|req|next)$" }]
+  },
+  "parser": "babel-eslint",
+  "globals": {
+    "describe": false,
+    "it": false,
+    "window": false,
+    "document": false
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "src",
+          "src/components"
+        ]
+      }
+    }
+  }
+}

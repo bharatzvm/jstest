@@ -1,0 +1,138 @@
+$background: #126A51;
+.body{
+	font-family: sans-serif;
+	background: $background;
+	color: white;
+	position: absolute;
+	top:0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	overflow-y: auto;
+}
+
+.prevButton{
+	left:0;
+}
+
+.nextButton{
+	right:0;
+}
+
+.navButton{
+	color: white;
+	font-size: 3rem;
+	border: none;
+	align-items: center;
+	background: $background;
+	position: absolute;
+	top: 50px;
+	bottom: 0;
+	margin: 0;
+	max-width: 10rem;
+	min-width: 1rem;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	flex-direction: column;
+}
+
+.submitQuiz{
+	top: 0;
+  height: 50px;
+  right: 5rem;
+  font-size: 1.5rem;
+  color: green;
+}
+
+.hide{
+  display: none;
+}
+
+.goodTogo{ 
+  color: yellow;
+}
+
+.endQuiz{
+  color: red;
+	top: 0;
+  height: 50px;
+  right: 0;
+}
+
+.currentCount{
+	padding-left: 0.5rem;
+	font-size: 1rem;
+}
+
+.question{
+	padding-left: 1rem;
+	padding-top: 0.5rem;
+	padding-bottom: 2rem;
+	font-size: 1.2rem;
+}
+
+.option{
+	font-size: 1.5rem;
+	padding: 0.5rem;
+}
+
+.activeQuestion{
+	position: relative;
+	max-width: 750px;
+	margin: 0 auto;
+	padding: 2rem 2rem 4rem 2rem;
+	box-sizing: border-box;
+	display: flex;
+	flex-flow: column;
+	height: 100%;
+}
+
+.pushToBottom{
+	text-align: center;
+	margin-top: auto;
+}
+
+.bottomOptions{
+	display: inline-block;
+	padding: 1rem 2rem;
+	margin: 0.15rem;
+	border: 0.2rem solid white;
+}
+
+// result
+.tBorder{
+  border: 2px solid grey;
+}
+
+.table{
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.textCenter{
+  text-align: center;
+}
+// helpers
+
+.active{
+	display: block;
+}
+
+.inlineblk{
+	display: inline-block;
+}
+
+.inactive{
+	display: none;
+}
+
+.pd-lr10{
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+.pd-t10{
+	padding-top: 1rem;
+}

@@ -1,0 +1,12 @@
+# Too annoying git diff
+package-lock.json
+
+# Environment
+.env
+
+# Dependencies
+node_modules/
+
+# Compiled output
+build
+src/compiled
