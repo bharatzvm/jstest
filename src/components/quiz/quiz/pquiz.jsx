@@ -16,6 +16,7 @@ const PQuiz = ({ questions, current, appStatus, answer, previousQuestion, nextQu
               onClickFunction={onClickFunction}
               answeredCount={answer.answeredCount}
               question={q.question}
+              selectedAnswer={q.selectedAnswer}
               id={q.id}
               index={index}
               isCurrent={current === index}

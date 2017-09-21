@@ -67,7 +67,19 @@ const status = (state = true, action) => {
   }
 };
 
-const questions = (state = []) => state;
+const questions = (state = [], action) => {
+  switch (action.type) {
+    case CHOOSE_ANSWER: {
+      const updatedQuestions = state.map((q) => {
+        if (q.id === action.questionId) return ({ ...q, selectedAnswer: action.answerId });
+        return q;
+      });
+      return updatedQuestions;
+    }
+    default:
+      return state;
+  }
+};
 
 const totalCount = (state = []) => state;
 

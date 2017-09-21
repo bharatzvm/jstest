@@ -13,7 +13,6 @@ const Result = ({ total, wrong, correct, unattempted }) => {
         <h3 className={styles.textCenter}> Thank you </h3>
         <table
           className={[borderClass, styles.table].join(' ')}
-          border="1"
         >
           <tbody>
             <tr>

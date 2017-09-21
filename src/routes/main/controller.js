@@ -37,7 +37,6 @@ const getQuiz = async (req, res) => {
     totalCount: flatQnA.length,
   };
   const store = createStore(reducer, initialState);
-  logger.log(JSON.stringify(store.getState(), null, 2));
   const children = ReactDOM.renderToString(
     <Provider store={store}>
       <App>

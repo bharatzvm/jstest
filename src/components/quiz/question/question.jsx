@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import styles from './question.scss';
 
-const Question = ({ onClickFunction, question, id, isCurrent, answeredCount, index, totalCount, options }) => (
+const Question = ({ onClickFunction, question, id, isCurrent, answeredCount, index, totalCount, options, selectedAnswer }) => (
   <div className={isCurrent ?
     [styles.activeQuestion].join(' ') : styles.inactive}
   >
@@ -19,7 +19,7 @@ const Question = ({ onClickFunction, question, id, isCurrent, answeredCount, ind
         onClick={() => onClickFunction(option.id, id, answeredCount, totalCount)}
         role="button"
         tabIndex="0"
-        className={styles.option}
+        className={[styles.option, option.id === selectedAnswer ? styles.selectedAnswer : ''].join(' ')}
       >
         {String.fromCharCode(optionIndex + 65)} - {option.value}
       </div>),
@@ -27,7 +27,7 @@ const Question = ({ onClickFunction, question, id, isCurrent, answeredCount, ind
     <div className={styles.pushToBottom}>
       {options.map((option, optionIndex) =>
         (<div
-          className={styles.bottomOptions}
+          className={[styles.bottomOptions, option.id === selectedAnswer ? styles.selectedAnswer : ''].join(' ')}
           key={option.id}
           onClick={() => onClickFunction(option.id, id, answeredCount, totalCount)}
           role="button"
@@ -40,7 +40,12 @@ const Question = ({ onClickFunction, question, id, isCurrent, answeredCount, ind
   </div>
 );
 
+Question.defaultProps = {
+  selectedAnswer: NaN,
+};
+
 Question.propTypes = {
+  selectedAnswer: PropTypes.number,
   answeredCount: PropTypes.number.isRequired,
   onClickFunction: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
