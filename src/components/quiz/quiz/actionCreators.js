@@ -40,8 +40,8 @@ export const fetchResultSuccess = helperAction(FETCH_RESULTS_SUCCESS);
 export const fetchResultFailure = helperAction(FETCH_RESULTS_FAILURE);
 
 export const getResults = () => (dispatch, getState) => {
-  dispatch(fetchResult());
   dispatch(endQuiz());
+  dispatch(fetchResult());
   return fetch('/getResult', {
     method: 'POST',
     headers: {
@@ -52,5 +52,6 @@ export const getResults = () => (dispatch, getState) => {
     body: JSON.stringify({ ...getState().answer }),
   })
     .then(res => res.json())
-    .then(data => dispatch(fetchResultSuccess(data)));
+    .then(data => dispatch(fetchResultSuccess(data)))
+    .catch(data => dispatch(fetchResultFailure(data)));
 };

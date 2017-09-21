@@ -9,7 +9,7 @@ import logger from 'tools/logger';
 import request from 'tools/request';
 import assets from 'compiled/assets.json';
 import App from 'components/App';
-import { Quiz, reducers } from 'components/app';
+import { Quiz, reducer } from 'components/quiz';
 
 const title = 'Javascript Quiz';
 const description = 'A simple javascript test';
@@ -36,7 +36,8 @@ const getQuiz = async (req, res) => {
     questions: flatQnA.map(({ question, id, options }) => ({ question, id, options })),
     totalCount: flatQnA.length,
   };
-  const store = createStore(reducers, initialState);
+  const store = createStore(reducer, initialState);
+  logger.log(JSON.stringify(store.getState(), null, 2));
   const children = ReactDOM.renderToString(
     <Provider store={store}>
       <App>
@@ -65,7 +66,7 @@ const getResults = async (req, res) => {
   const actualAnswers = req.session.answers;
   if (!actualAnswers) return res.status(500).json({ error: 'Sorry, you\'r too late' });
   const total = Object.keys(actualAnswers).length;
-  if (!total) return res.send({});
+  if (!total) return res.status(500).json({ error: 'Sorry, we screwed up' });
   let correct = 0;
   let wrong = 0;
   let unattempted = total;

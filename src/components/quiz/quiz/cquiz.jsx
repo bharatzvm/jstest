@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
-import Quiz from './quiz';
+import Quiz from './pquiz';
+
 import {
   answerQuestion,
   getPreviousQuestion,

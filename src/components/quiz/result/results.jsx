@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import styles from './question.scss';
+import { styles as questionStyles } from '../question';
+import styles from './results.scss';
 
 const Result = ({ total, wrong, correct, unattempted }) => {
   const borderClass = [styles.tBorder].join(' ');
   return (
-    <div className={styles.body}>
-      <div className={styles.activeQuestion}>
+    <div className={questionStyles.body}>
+      <div className={questionStyles.activeQuestion}>
         <h3 className={styles.textCenter}> Thank you </h3>
         <table
           className={[borderClass, styles.table].join(' ')}

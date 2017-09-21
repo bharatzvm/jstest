@@ -72,4 +72,10 @@ Move nodemonConfig into package.json
 
 ### Known issues
 
-babel --copy-files doesn't seem to copy scss files for production
+babel --copy-files doesn't seem to copy scss files for production - Wait for babel v7 that will fix it
+
+### To Test
+
+docker run -d --name redis -p 6380:6379 redis 
+
+docker run -it --name jstest --link redis -p 4500:4500 highbp/jstest:stage

@@ -10,7 +10,7 @@
   "main": "main.js",
   "scripts": {
     "test": "mocha --recursive --compilers js:babel-core/register tests",
-    "start": "nodemon --exec babel-node src/server.js",
+    "start": "nodemon --exec babel-node --stack-trace-limit=1000 src/server.js",
     "start-trace": "nodemon --exec babel-node --stack-trace-limit=1000 src/server.js",
     "build-server": "babel src --out-dir build",
     "build-client": "webpack --progress --display-error-details",

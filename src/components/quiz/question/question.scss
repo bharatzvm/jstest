@@ -1,4 +1,5 @@
 $background: #126A51;
+
 .body{
 	font-family: sans-serif;
 	background: $background;
@@ -100,20 +101,6 @@ $background: #126A51;
 	border: 0.2rem solid white;
 }
 
-// result
-.tBorder{
-  border: 2px solid grey;
-}
-
-.table{
-  width: 100%;
-  table-layout: fixed;
-  border-collapse: collapse;
-}
-
-.textCenter{
-  text-align: center;
-}
 // helpers
 
 .active{

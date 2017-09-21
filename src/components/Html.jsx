@@ -20,7 +20,7 @@ class Html extends Component {
     scripts: [],
     children: '',
     app: config,
-    favicon: '//cdn.zivame.com/skin/frontend/base/default/favicon.ico',
+    favicon: '',
   };
 
   render() {

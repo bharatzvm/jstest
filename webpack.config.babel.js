@@ -73,7 +73,7 @@ const plugins = [assetsJSONPlugin, cssExtraction];
 
 const webpackConfig = {
   entry: {
-    app: './src/components/app/page.jsx',
+    app: './src/components/quiz/page.jsx',
   },
   devtool: getDevTool(),
   stats: getStats(),

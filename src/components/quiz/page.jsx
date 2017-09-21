@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 
 import App from 'App';
-import { Quiz, reducers } from './';
+import { Quiz, reducer } from './';
 
 
 const preloadedState = window.PRELOADED_STATE;
@@ -17,7 +17,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /* eslint-enable */
 
 const store = createStore(
-  reducers,
+  reducer,
   preloadedState,
   composeEnhancers(
     applyMiddleware(
@@ -34,6 +34,4 @@ render(
   </Provider>,
   document.getElementById('app'),
 );
-
-store.subscribe(() => console.log(store.getState()));
 

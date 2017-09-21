@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Result from './results';
-import Question from './question';
-import styles from './question.scss';
+import { Result } from '../result';
+import { Question, styles } from '../question';
 
-const Quiz = ({ questions, current, appStatus, answer, previousQuestion, nextQuestion, endQuiz, onClickFunction }) => {
+const PQuiz = ({ questions, current, appStatus, answer, previousQuestion, nextQuestion, endQuiz, onClickFunction }) => {
   const totalCount = questions.length;
   return (
     <div>
@@ -64,14 +63,14 @@ const Quiz = ({ questions, current, appStatus, answer, previousQuestion, nextQue
   );
 };
 
-Quiz.defaultProps = {
+PQuiz.defaultProps = {
   answer: {
     answers: {},
     answeredCount: 0,
   },
 };
 
-Quiz.propTypes = {
+PQuiz.propTypes = {
   appStatus: PropTypes.bool.isRequired,
   answer: PropTypes.shape({
     answers: PropTypes.object, // eslint-disable-line
@@ -91,4 +90,4 @@ Quiz.propTypes = {
   endQuiz: PropTypes.func.isRequired,
 };
 
-export default Quiz;
+export default PQuiz;
