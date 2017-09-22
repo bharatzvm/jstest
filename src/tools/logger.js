@@ -31,7 +31,7 @@ const colors = {
   debug: 'blue',
 };
 
-const customWriter = (writerType, level) => (...message) => writerType[level](...message);
+const customWriter = (writerType, level) => (...id) => (...message) => writerType[level](...id, ...message);
 
 const customStream = (writerType, level) => ({
   write: (...message) => writerType[level](...message),
@@ -102,9 +102,9 @@ const disableLoggingToConsole = () => {
 const customLogger = {
   debug: customWriter(debugLogs, config.CONSOLE_LOG_DEBUG_LEVEL),
   error: customWriter(errorLogs, config.CONSOLE_LOG_ERROR_LEVEL),
-  access: customStream(accessLogs, config.CONSOLE_LOG_ACCESS_LEVEL),
   api: customWriter(apiLogs, config.CONSOLE_LOG_API_LEVEL),
   log: customWriter(consoleLogs, config.CONSOLE_LOG_LEVEL),
+  access: customStream(accessLogs, config.CONSOLE_LOG_ACCESS_LEVEL),
   testEnv: disableLoggingToConsole,
 };
 

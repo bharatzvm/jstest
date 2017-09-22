@@ -48,11 +48,20 @@ const sessionMiddleware = () => (req, res, next) => {
   })(req, res, next);
 };
 
+const generateRequestId = (req, res, next) => {
+  req.uId = uuidV4();
+  next();
+};
+
+app.use(generateRequestId);
+
 app.enable('trust proxy');
 
 app.use(helmet());
 
-morgan.format('customFormat', '":req[x-forwarded-for]" :remote-addr [:date[clf]] ":method :url HTTP/:http-version" :status :response-time ":referrer" ":user-agent"');
+morgan.token('id', req => req.uId);
+
+morgan.format('customFormat', '":id" ":req[x-forwarded-for]" :remote-addr [:date[clf]] ":method :url HTTP/:http-version" :status :response-time ":referrer" ":user-agent"');
 
 app.use(morgan('customFormat', {
   stream: logger.access,
@@ -81,10 +90,10 @@ app.use(passport.session());
 router(app);
 
 app.listen(config.PORT, () => {
-  logger.log('Listening on port %s', config.PORT);
+  logger.log('server:')('Listening on port %s', config.PORT);
 });
 
 app.use((err, req, res, next) => {
-  logger.error(err.stack);
+  logger.error('server:')(err.stack);
   res.status(500).send('Something broke!');
 });

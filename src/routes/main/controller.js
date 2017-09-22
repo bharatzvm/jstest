@@ -56,7 +56,7 @@ const getQuiz = async (req, res) => {
     preloadedState,
   };
   const html = ReactDOM.renderToStaticMarkup(<Html {...data} />);
-  logger.log('Serving Quiz Page');
+  logger.log(req.uId)('Serving Quiz Page');
   res.send(`<!doctype html>${html}`);
 };
 
@@ -77,7 +77,7 @@ const getResults = async (req, res) => {
       wrong += 1;
     }
   });
-  logger.log('Serving results json');
+  logger.log(req.uId)('Serving results json');
   return res.send({ total, correct, wrong, unattempted });
 };
 
