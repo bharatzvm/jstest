@@ -68,6 +68,7 @@ const config = {
   WEBPACK_DEVTOOL: process.env.WEBPACK_DEVTOOL,
   WEBPACK_BUILD_STATS: process.env.WEBPACK_BUILD_STATS,
   WEBPACK_PUBLIC_PATH: process.env.WEBPACK_PUBLIC_PATH,
+  TWITTER_TOKEN: process.env.TWITTER_TOKEN,
 };
 
 export default config;
