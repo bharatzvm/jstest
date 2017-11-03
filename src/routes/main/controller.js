@@ -14,6 +14,31 @@ import { Quiz, reducer } from 'components/quiz';
 const title = 'Javascript Quiz';
 const description = 'A simple javascript test';
 
+const getUserId = async (req, res, tweetId) => {
+  logger.log(req.uId)(`Get UserId for tweet: ${tweetId}`);
+  return 10;
+};
+
+const getRetweetUserIds = async (req, res, tweetId) => {
+  logger.log(req.uId)(`Get RetweetUserIds for tweet: ${tweetId}`);
+  return ['1', '2', '3'];
+};
+
+const getUniqueFollowers = async (req, res, users) => {
+  logger.log(req.uId)(`Finding Unique followers of ${users.length} number of users`);
+  return 10;
+};
+
+const askForAtweet = async (req, res) => {
+  // const tweetId = req.query && req.query.tweetId;
+  // if (!tweetId) return res.send(0);
+  const tweetId = '926015776473088001';
+  const userId = await getUserId(req, res, tweetId);
+  const retweetUserIds = await getRetweetUserIds(req, res, tweetId);
+  const uniqueFollowers = await getUniqueFollowers(req, res, [...retweetUserIds, userId]);
+  return res.send({ reach: uniqueFollowers, tweetId });
+};
+
 const getQuiz = async (req, res) => {
   const requestOptions = {
     method: 'GET',
@@ -81,4 +106,4 @@ const getResults = async (req, res) => {
   return res.send({ total, correct, wrong, unattempted });
 };
 
-export { getQuiz, getResults };
+export { askForAtweet, getQuiz, getResults };

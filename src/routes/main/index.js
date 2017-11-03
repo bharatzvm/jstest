@@ -1,10 +1,11 @@
 import express from 'express';
-import { getQuiz, getResults } from './controller';
+import { askForAtweet, getResults } from './controller';
 
 const router = express.Router();
 
-router.get('/', getQuiz);
+router.get('/', askForAtweet);
 
 router.post('/getResult', getResults);
+
 
 export default router;

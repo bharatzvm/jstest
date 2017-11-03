@@ -1,6 +1,7 @@
 import winston from 'winston';
 import path from 'path';
 import fse from 'fs-extra';
+import util from 'util';
 
 import config from 'config';
 
@@ -31,7 +32,7 @@ const colors = {
   debug: 'blue',
 };
 
-const customWriter = (writerType, level) => (...id) => (...message) => writerType[level](...id, ...message);
+const customWriter = (writerType, level) => (...id) => (...message) => writerType[level](...id, util.format(...message));
 
 const customStream = (writerType, level) => ({
   write: (...message) => writerType[level](...message),

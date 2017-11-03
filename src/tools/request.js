@@ -10,7 +10,7 @@ const defaultHeaders = {
 const customRequest = (options, req, res) => {
   const option = { ...options };
   option.time = config.API_LOG_TIME;
-  option.headers = defaultHeaders;
+  option.headers = { defaultHeaders, ...option.headers };
   return new Promise((resolve, reject) => {
     request(option, (error, response, body) => {
       if (!error) {

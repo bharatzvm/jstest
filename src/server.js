@@ -90,7 +90,7 @@ app.use(passport.session());
 router(app);
 
 app.listen(config.PORT, () => {
-  logger.log('server:')('Listening on port %s', config.PORT);
+  logger.log('server:')(`Listening on port ${config.PORT}`);
 });
 
 app.use((err, req, res, next) => {
