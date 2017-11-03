@@ -50,10 +50,13 @@ const getUniqueFollowers = async (req, res, users) => {
 
 const askForAtweet = async (req, res) => {
   const tweetId = req.query && req.query.tweetId;
-  if (!tweetId) return res.send({ error: 'no input' });
-  // const tweetId = '926015776473088001'; // sehwag
-  // const tweetId = '926414921683812352'; // fossblr
-  // const tweetId = '926333108621676545'; // kenwheeler
+  if (!tweetId) {
+    return res.send({
+      error: 'no input',
+      exampleIds: ['926015776473088001', '926414921683812352', '926333108621676545'],
+      usage: '/?tweetId=926015776473088001',
+    });
+  }
   try {
     const userId = await getUserId(req, res, tweetId);
     const retweetUserIds = await getRetweetUserIds(req, res, tweetId);
