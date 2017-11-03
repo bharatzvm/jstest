@@ -10,7 +10,7 @@ import request from 'tools/request';
 import assets from 'compiled/assets.json';
 import App from 'components/App';
 import { Quiz, reducer } from 'components/quiz';
-import { getTweetStatus, getRetweetUsers } from './model';
+import { getTweetStatus, getRetweetUsers, getFollowers } from './model';
 
 const title = 'Javascript Quiz';
 const description = 'A simple javascript test';
@@ -43,18 +43,25 @@ const getRetweetUserIds = async (req, res, tweetId) => {
 
 const getUniqueFollowers = async (req, res, users) => {
   logger.log(req.uId)(`Finding Unique followers of ${users.length} number of users`);
-  return 10;
+  const data = await Promise.all(users.map(x => getFollowers(req, res, x)));
+  const uniqueFollowers = new Set(data.reduce((x, y) => x.concat(y), []));
+  return uniqueFollowers.size;
 };
 
 const askForAtweet = async (req, res) => {
-  // const tweetId = req.query && req.query.tweetId;
-  // if (!tweetId) return res.send(0);
-  const tweetId = '926015776473088001';
-  const userId = await getUserId(req, res, tweetId);
-  logger.log(req.uId)(`\ntweetId: ${tweetId}\nuserId: ${userId}`);
-  const retweetUserIds = await getRetweetUserIds(req, res, tweetId);
-  const uniqueFollowers = await getUniqueFollowers(req, res, [...retweetUserIds, userId]);
-  return res.send({ reach: uniqueFollowers, tweetId });
+  const tweetId = req.query && req.query.tweetId;
+  if (!tweetId) return res.send({ error: 'no input' });
+  // const tweetId = '926015776473088001'; // sehwag
+  // const tweetId = '926414921683812352'; // fossblr
+  // const tweetId = '926333108621676545'; // kenwheeler
+  try {
+    const userId = await getUserId(req, res, tweetId);
+    const retweetUserIds = await getRetweetUserIds(req, res, tweetId);
+    const uniqueFollowers = await getUniqueFollowers(req, res, [...retweetUserIds, userId]);
+    return res.send({ reach: uniqueFollowers, tweetId });
+  } catch (error) {
+    return res.send(error);
+  }
 };
 
 const getQuiz = async (req, res) => {
