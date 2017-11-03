@@ -58,8 +58,13 @@ const askForAtweet = async (req, res) => {
     });
   }
   try {
-    const userId = await getUserId(req, res, tweetId);
-    const retweetUserIds = await getRetweetUserIds(req, res, tweetId);
+    const [
+      userId,
+      retweetUserIds,
+    ] = await Promise.all([
+      getUserId(req, res, tweetId),
+      getRetweetUserIds(req, res, tweetId),
+    ]);
     const uniqueFollowers = await getUniqueFollowers(req, res, [...retweetUserIds, userId]);
     return res.send({ reach: uniqueFollowers, tweetId });
   } catch (error) {
