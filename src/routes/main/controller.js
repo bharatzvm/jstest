@@ -10,7 +10,7 @@ import request from 'tools/request';
 import assets from 'compiled/assets.json';
 import App from 'components/App';
 import { Quiz, reducer } from 'components/quiz';
-import { getTweetStatus } from './model';
+import { getTweetStatus, getRetweetUsers } from './model';
 
 const title = 'Javascript Quiz';
 const description = 'A simple javascript test';
@@ -32,7 +32,13 @@ const getUserId = async (req, res, tweetId) => {
 
 const getRetweetUserIds = async (req, res, tweetId) => {
   logger.log(req.uId)(`Get RetweetUserIds for tweet: ${tweetId}`);
-  return ['1', '2', '3'];
+  try {
+    const retweetUserIds = await getRetweetUsers(req, res, tweetId);
+    return retweetUserIds;
+  } catch (error) {
+    logger.error(req.uId)(error);
+    return null;
+  }
 };
 
 const getUniqueFollowers = async (req, res, users) => {
