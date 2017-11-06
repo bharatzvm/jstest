@@ -44,7 +44,7 @@ const getRetweetUserIds = async (req, res, tweetId) => {
 const getUniqueFollowers = async (req, res, users) => {
   logger.log(req.uId)(`Finding Unique followers of ${users.length} number of users`);
   const data = await Promise.all(users.map(x => getFollowers(req, res, x)));
-  const uniqueFollowers = new Set(data.reduce((x, y) => x.concat(y), []));
+  const uniqueFollowers = new Set(data.reduce((x, y) => x.concat(y), []).concat(users));
   return uniqueFollowers.size;
 };
 
